@@ -49,4 +49,12 @@ class BackendContainerEnvironment extends BackendEnvironment
             'EXT:container/Tests/Acceptance/Fixtures/be_groups.xml'
         ],
     ];
+
+    public function _initialize()
+    {
+        if (getenv('fluidBasedPageModule')) {
+            $this->localConfig['configurationToUseInTestInstance']['SYS']['features']['fluidBasedPageModule'] = true;
+        }
+        parent::_initialize();
+    }
 }

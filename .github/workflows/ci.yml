@@ -39,5 +39,8 @@ jobs:
       - name: Functional Tests with mariadb
         run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -s functional
 
+      - name: Acceptance Tests With Fluid Base Page Module on TYPO 10
+        run: if [ ${{ matrix.TYPO3 }} -eq 10 ]; then Build/Scripts/runTests.sh -p ${{ matrix.php }} -t ${{ matrix.TYPO3 }} -f -s acceptance; fi
+
       - name: Acceptance Tests
-        run: if [ ${{ matrix.TYPO3 }} -eq 10 ]; then Build/Scripts/runTests.sh -p ${{ matrix.php }} -t ${{ matrix.TYPO3 }} -s acceptance; fi
+        run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -t ${{ matrix.TYPO3 }} -s acceptance

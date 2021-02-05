@@ -27,6 +27,7 @@ setUpDockerComposeDotEnv() {
     echo "PHP_XDEBUG_PORT=${PHP_XDEBUG_PORT}" >> .env
     echo "DOCKER_PHP_IMAGE=${DOCKER_PHP_IMAGE}" >> .env
     echo "TYPO3=${TYPO3}" >> .env
+    echo "FLUID_BASED_PAGE_MODULE=${FLUID_BASED_PAGE_MODULE}" >> .env
     echo "EXTRA_TEST_OPTIONS=${EXTRA_TEST_OPTIONS}" >> .env
     echo "SCRIPT_VERBOSE=${SCRIPT_VERBOSE}" >> .env
     echo "CGLCHECK_DRY_RUN=${CGLCHECK_DRY_RUN}" >> .env
@@ -132,6 +133,7 @@ PHP_XDEBUG_PORT=9000
 EXTRA_TEST_OPTIONS=""
 SCRIPT_VERBOSE=0
 TYPO3="10"
+FLUID_BASED_PAGE_MODULE=0
 
 # Option parsing
 # Reset in case getopts has been used previously in the shell
@@ -139,7 +141,7 @@ OPTIND=1
 # Array for invalid options
 INVALID_OPTIONS=();
 # Simple option parsing based on getopts (! not getopt)
-while getopts ":s:d:p:e:t:xy:nhuv" OPT; do
+while getopts ":s:d:p:e:t:xy:nhuvf" OPT; do
     case ${OPT} in
         s)
             TEST_SUITE=${OPTARG}
@@ -168,6 +170,9 @@ while getopts ":s:d:p:e:t:xy:nhuv" OPT; do
             ;;
         n)
             CGLCHECK_DRY_RUN="-n"
+            ;;
+        f)
+            FLUID_BASED_PAGE_MODULE=1
             ;;
         u)
             TEST_SUITE=update
