@@ -52,7 +52,7 @@ class BackendContainerEnvironment extends BackendEnvironment
 
     public function _initialize()
     {
-        if (getenv('fluidBasedPageModule')) {
+        if (getenv('FLUID_BASED_PAGE_MODULE')) {
             $this->localConfig['configurationToUseInTestInstance']['SYS']['features']['fluidBasedPageModule'] = true;
         }
         parent::_initialize();
